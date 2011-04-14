@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include <syslog.h>
 #include <sys/types.h>
-#include <linux/connector.h>
 #include "config.h"
 
 #undef u8
@@ -19,7 +18,13 @@
 
 struct completion;
 
+#ifdef __ANDROID__
+#include "../../kernel/include/linux/connector.h"
+#include "../../kernel/include/video/uvesafb.h"
+#else
+#include <linux/connector.h>
 #include <video/uvesafb.h>
+#endif
 
 //#define ulog(args...)	do {} while (0)
 //#define ulog(args...)		fprintf(stdout, ##args)
