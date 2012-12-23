@@ -18,10 +18,7 @@
 
 struct completion;
 
-#ifdef __ANDROID__
-#include "../../kernel/include/linux/connector.h"
-#include "../../kernel/include/video/uvesafb.h"
-#else
+#ifndef __ANDROID__
 #include <linux/connector.h>
 #include <video/uvesafb.h>
 #endif
