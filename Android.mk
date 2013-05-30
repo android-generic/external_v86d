@@ -11,10 +11,12 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
 KERNEL_DIR ?= kernel
-CONNECTOR_H := $(wildcard $(KERNEL_DIR)/include/uapi/linux/connector.h)
+
+use_uapi = $(firstword $(wildcard $(addprefix $(KERNEL_DIR)/include/,uapi/$(1) $(1))))
+
 LOCAL_CFLAGS += \
-	-include $(KERNEL_DIR)/include/video/uvesafb.h \
-	-include $(if $(CONNECTOR_H),$(CONNECTOR_H),$(KERNEL_DIR)/include/linux/connector.h)
+	-include $(call use_uapi,video/uvesafb.h) \
+	-include $(call use_uapi,linux/connector.h)
 
 LOCAL_SRC_FILES :=		\
 	v86.c			\
