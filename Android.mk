@@ -18,14 +18,27 @@ LOCAL_CFLAGS += \
 	-include $(call use_uapi,video/uvesafb.h) \
 	-include $(call use_uapi,linux/connector.h)
 
-LOCAL_SRC_FILES :=		\
-	v86.c			\
-	v86_lrmi.c		\
-	v86_common.c		\
-	lrmi/lrmi.c		\
+LOCAL_SRC_FILES := \
+	v86.c \
+	v86_common.c
+
+LOCAL_SRC_FILES_x86 := \
+	v86_lrmi.c \
+	lrmi/lrmi.c \
 	lrmi/x86-common.c
 
-LOCAL_C_INCLUDES += $(LOCAL_PATH)/lrmi
+LOCAL_SRC_FILES_x86_64 := \
+	v86_mem.c \
+	v86_x86emu.c \
+	x86emu/decode.c \
+	x86emu/fpu.c \
+	x86emu/ops.c \
+	x86emu/ops2.c \
+	x86emu/prim_ops.c \
+	x86emu/sys.c
+
+LOCAL_C_INCLUDES_x86 := $(LOCAL_PATH)/lrmi
+LOCAL_C_INCLUDES_x86_64 := $(LOCAL_PATH)/x86emu
 
 LOCAL_MODULE := v86d
 LOCAL_MODULE_TAGS := optional
