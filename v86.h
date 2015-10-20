@@ -18,10 +18,8 @@
 
 struct completion;
 
-#ifndef __ANDROID__
 #include <linux/connector.h>
 #include <video/uvesafb.h>
-#endif
 
 //#define ulog(args...)	do {} while (0)
 //#define ulog(args...)		fprintf(stdout, ##args)

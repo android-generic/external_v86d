@@ -10,13 +10,14 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
-KERNEL_DIR ?= kernel
+LOCAL_CFLAGS := \
+	-Wno-unused-parameter
 
-use_uapi = $(firstword $(wildcard $(addprefix $(KERNEL_DIR)/include/,uapi/$(1) $(1))))
-
-LOCAL_CFLAGS += \
-	-include $(call use_uapi,video/uvesafb.h) \
-	-include $(call use_uapi,linux/connector.h)
+LOCAL_CFLAGS_x86 := \
+	-DIF_MASK=X86_EFLAGS_IF \
+	-DIOPL_MASK=X86_EFLAGS_IOPL \
+	-DTF_MASK=X86_EFLAGS_TF \
+	-DVIF_MASK=X86_EFLAGS_VIF
 
 LOCAL_SRC_FILES := \
 	v86.c \
