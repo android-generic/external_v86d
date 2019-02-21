@@ -11,6 +11,7 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_CFLAGS := \
+	-D__HAS_LONG_LONG__ \
 	-Wno-unused-parameter
 
 LOCAL_CFLAGS_x86 := \
