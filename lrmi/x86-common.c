@@ -179,27 +179,6 @@ LRMI_free_real(void *m)
 
 #define DEFAULT_STACK_SIZE 	0x1000
 
-static inline void
-set_bit(unsigned int bit, void *array)
-{
-	unsigned char *a = array;
-
-	a[bit / 8] |= (1 << (bit % 8));
-}
-
-static inline unsigned int
-get_int_seg(int i)
-{
-	return *(unsigned short *)(i * 4 + 2);
-}
-
-
-static inline unsigned int
-get_int_off(int i)
-{
-	return *(unsigned short *)(i * 4);
-}
-
 int LRMI_common_init(void)
 {
 	void *m;
